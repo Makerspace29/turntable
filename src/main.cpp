@@ -6,6 +6,7 @@
 При запуске вращения ардуино пишет mstart на последовательном порту, при завершении вращения пишет mend.
 */
 
+#include <turntable.h>
 #include <AccelStepper.h>
 
 #define INPUT_SIZE 32
@@ -35,7 +36,7 @@ int stepperSpeed = 0;
 int stepperMaxSpeed = 0;
 char inputBuf[INPUT_SIZE + 1];
 
-AccelStepper myMotor(motorInterfaceType, stepPin, dirPin);  
+AccelStepper myMotor(motorInterfaceType, stepPin, dirPin);
 
 void setup()
 {
@@ -52,11 +53,11 @@ void setup()
 void loop()
 {
   isSerialAvailable();
-  startRevolution(); 
+  startRevolution();
 }
 
 bool isSerialAvailable()
-{ 
+{
     if( !Serial.available() )
     {
         return false;
@@ -103,6 +104,6 @@ void startRevolution(){
         Serial.flush();
         stepperStart = false;
         stepperPosition = 0;
-        stepperSpeed = 0;   
+        stepperSpeed = 0;
     }
   }
